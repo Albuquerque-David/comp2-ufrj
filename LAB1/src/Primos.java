@@ -16,20 +16,22 @@ public class Primos {
          * Com Crivo de Erastótenes.
          */
         double t1 = System.currentTimeMillis();
-        int[] primosComCrivo = calculaPrimosComCrivo(40000000);
+        int[] primosComCrivo = calculaPrimosComCrivo(40000);
         double t2 = System.currentTimeMillis();
         double tf = (t2-t1)/1000;
-        System.out.printf("A execução usando o Crivo de Erastótenes demorou %.5f segundos.\n",tf);
+        System.out.printf("A execução usando o Crivo de Erastótenes demorou %.15f segundos.\n",tf);
 
         /**
          * Com método auxiliar.
          */
         t1 = System.currentTimeMillis();
+        int[] primos = calculaPrimos(40000);
         t2 = System.currentTimeMillis();
-        tf = t2-t1;
-        System.out.printf("A execução usando um método auxiliar demorou %.10f segundos.\n",tf);
+        tf = (t2-t1)/1000;
+        System.out.printf("A execução usando um método auxiliar demorou %.15f segundos.\n",tf);
 
         // printaPrimos(primosComCrivo);
+        // printaPrimos(primos);
 
         return primosComCrivo;
     }
@@ -42,6 +44,25 @@ public class Primos {
      */
     public static int[] calculaPrimos(int n) {
         int[] primos = new int[n];
+        int k = 0;
+        int cont = 0;
+
+        for(int i = 2; i <= n; i++){
+            cont = 0;
+            for(int j = 1; j <= n; j++){
+                if(i % j == 0)
+                    cont++;
+
+                if(cont > 2)
+                    break;
+            }
+
+            if(cont == 2){
+                primos[k] = i;
+                k++;
+            }
+        }
+
         return primos;
     }
 
@@ -92,7 +113,6 @@ public class Primos {
      * @param primos array de inteiros contendo os números primos.
      */
     public static void printaPrimos(int[] primos) {
-
         for(int i = 0; i < primos.length; i++){
             if(primos[i] == 0)
                 break;
