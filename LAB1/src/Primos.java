@@ -1,3 +1,7 @@
+/**
+ * Classe principal do programa
+ * @author David Albuquerque - cehaga@dcc.ufrj.br
+ */
 public class Primos {
 
     public static void main(String[] args) {
