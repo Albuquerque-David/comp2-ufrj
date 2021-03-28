@@ -1,6 +1,6 @@
 /**
  * Classe principal do programa
- * @author David Albuquerque - cehaga@dcc.ufrj.br
+ * @author David Albuquerque - davidra@dcc.ufrj.br
  */
 public class Primos {
 
