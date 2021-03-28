@@ -31,7 +31,7 @@ public class Primos {
 
         // printaPrimos(primosComCrivo);
 
-        return null;
+        return primosComCrivo;
     }
 
     /**
