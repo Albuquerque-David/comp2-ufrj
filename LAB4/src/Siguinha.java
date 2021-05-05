@@ -50,7 +50,8 @@ public class Siguinha {
         return periodoCorrente;
     }
 
-    public void cadastrarAluno(long dre, Aluno aluno){
+    public void cadastrarAluno(long dre, String nome){
+        Aluno aluno = new Aluno(dre, nome);
         alunos.put(dre,aluno);
     }
 
