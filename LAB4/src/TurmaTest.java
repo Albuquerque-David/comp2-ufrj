@@ -21,9 +21,7 @@ public class TurmaTest {
     @Before
     public void setUp() {
         siguinha = Siguinha.getInstanciaUnica();
-        aluno1 = new Aluno(1235, "Aluno1");
-        aluno2 = new Aluno(1236, "Aluno2");
-        aluno3 = new Aluno(1237, "Aluno3");
+
         prof1 = new Professor("Professor1",2013);
         prof2 = new Professor("Professor2",2018);
         algGraf = new Disciplina("Algoritmos e Grafos", 4, "MAB704");
@@ -33,21 +31,24 @@ public class TurmaTest {
         turmaCalculo1 = new Turma(calculo1,periodo20201,prof1);
         turmaAlgGraf = new Turma(algGraf,periodo20202,prof2);
 
-        siguinha.cadastrarAluno(aluno1.getDre(),aluno1);
-        siguinha.cadastrarAluno(aluno2.getDre(),aluno2);
-        siguinha.cadastrarAluno(aluno3.getDre(),aluno3);
+        siguinha.cadastrarAluno(1235,"Aluno1");
+        siguinha.cadastrarAluno(1236,"Aluno2");
+        siguinha.cadastrarAluno(1237,"Aluno3");
+
+        aluno1 = Siguinha.obterAluno(1235);
+        aluno2 = Siguinha.obterAluno(1236);
+        aluno3 = Siguinha.obterAluno(1237);
     }
 
     @Test
     public void testarInscreverAlunoSiga(){
-        siguinha.cadastrarAluno(aluno1.getDre(),aluno1);
-        siguinha.cadastrarAluno(aluno2.getDre(),aluno2);
-        siguinha.cadastrarAluno(aluno3.getDre(),aluno3);
+        siguinha.cadastrarAluno(1235,"Aluno1");
+        siguinha.cadastrarAluno(1236,"Aluno2");
+        siguinha.cadastrarAluno(1237,"Aluno3");
     }
 
     @Test
     public void testarObterAlunoSiga(){
-        System.out.println(Siguinha.obterAluno(1235).getDre());
         assertEquals(Siguinha.obterAluno(1235).getDre(),aluno1.getDre());
     }
 
@@ -70,6 +71,10 @@ public class TurmaTest {
 
     @Test
     public void testarInscreverMultiplosAlunos(){
+        aluno1 = Siguinha.obterAluno(1235);
+        aluno2 = Siguinha.obterAluno(1236);
+        aluno3 = Siguinha.obterAluno(1237);
+
         turmaCalculo1.inscreverAluno(aluno1);
         turmaCalculo1.inscreverAluno(aluno2);
         turmaAlgGraf.inscreverAluno(aluno2);
@@ -107,6 +112,10 @@ public class TurmaTest {
 
     @Test
     public void testarListarAlunosDeTurma(){
+        aluno1 = Siguinha.obterAluno(1235);
+        aluno2 = Siguinha.obterAluno(1236);
+        aluno3 = Siguinha.obterAluno(1237);
+
         turmaAlgGraf.inscreverAluno(aluno2);
         turmaAlgGraf.inscreverAluno(aluno3);
 
