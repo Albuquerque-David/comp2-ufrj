@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class Pacotinho {
 
-    private List<Figurinha> figurinhas;
+    private List<Colecionavel> figurinhas;
 
     public Pacotinho(Repositorio repo, int[] posicoesDesejadas) {
-        figurinhas = new ArrayList<Figurinha>();
+        figurinhas = new ArrayList<Colecionavel>();
         for( Integer posicao : posicoesDesejadas ){
             figurinhas.add(repo.getFigurinha(posicao));
         }
@@ -23,7 +23,7 @@ public class Pacotinho {
     public Pacotinho(Repositorio repo, int quantFigurinhas) {
 
         Integer tamanho = repo.getTotalFigurinhas();
-        figurinhas = new ArrayList<Figurinha>();
+        figurinhas = new ArrayList<Colecionavel>();
         Random rand = new Random();
         int n;
         for(int i = 0; i < quantFigurinhas; i++ ){

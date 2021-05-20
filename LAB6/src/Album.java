@@ -13,7 +13,7 @@ public class Album {
     private final Repositorio repositorio;
     private final int quantItensPorPacotinho;
 
-    private List<Figurinha> figurinhasColadas;  // direct addressing
+    private List<Colecionavel> figurinhasColadas;  // direct addressing
     private int quantFigurinhasColadas;
 
     // poderíamos fazer novamente direct addressing para as repetidas,
@@ -36,12 +36,12 @@ public class Album {
     }
 
     public void receberNovoPacotinho(Pacotinho pacotinho) {
-        Figurinha[] figurinhasDoPacotinho = pacotinho.getFigurinhas();
+        Colecionavel[] figurinhasDoPacotinho = pacotinho.getFigurinhas();
         if (figurinhasDoPacotinho.length != this.quantItensPorPacotinho) {
-            return; // melhor ainda: lançaria uma checked exception
+            return;
         }
 
-        for (Figurinha fig : figurinhasDoPacotinho) {
+        for (Colecionavel fig : figurinhasDoPacotinho) {
             final int posicao = fig.getPosicao();
             if (possuiItemColado(posicao)) {
                 int contRepetidas = this.contRepetidasByPosicao.getOrDefault(posicao, 0);
@@ -54,7 +54,7 @@ public class Album {
         }
     }
 
-    public Figurinha getItemColado(int posicao) {
+    public Colecionavel getItemColado(int posicao) {
         if(posicao >= figurinhasColadas.size() || posicao < 0)
             return null;
         return figurinhasColadas.get(posicao);
