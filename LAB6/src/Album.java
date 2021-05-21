@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Album {
+public class Album<T extends Colecionavel> {
 
     public static final int PERCENTUAL_MINIMO_PARA_AUTO_COMPLETAR = 90;
 
@@ -13,7 +13,7 @@ public class Album {
     private final Repositorio repositorio;
     private final int quantItensPorPacotinho;
 
-    private List<Colecionavel> figurinhasColadas;  // direct addressing
+    private List<T> figurinhasColadas;  // direct addressing
     private int quantFigurinhasColadas;
 
     // poderíamos fazer novamente direct addressing para as repetidas,
@@ -36,12 +36,14 @@ public class Album {
     }
 
     public void receberNovoPacotinho(Pacotinho pacotinho) {
-        Colecionavel[] figurinhasDoPacotinho = pacotinho.getFigurinhas();
+        T[] figurinhasDoPacotinho = (T[]) pacotinho.getColecionaveis();
+
+
         if (figurinhasDoPacotinho.length != this.quantItensPorPacotinho) {
             return;
         }
 
-        for (Colecionavel fig : figurinhasDoPacotinho) {
+        for (T fig : figurinhasDoPacotinho) {
             final int posicao = fig.getPosicao();
             if (possuiItemColado(posicao)) {
                 int contRepetidas = this.contRepetidasByPosicao.getOrDefault(posicao, 0);
@@ -52,9 +54,12 @@ public class Album {
                 this.quantFigurinhasColadas++;
             }
         }
+
+
+
     }
 
-    public Colecionavel getItemColado(int posicao) {
+    public T getItemColado(int posicao) {
         if(posicao >= figurinhasColadas.size() || posicao < 0)
             return null;
         return figurinhasColadas.get(posicao);
@@ -69,7 +74,7 @@ public class Album {
     }
 
     public int getTamanho() {
-        return this.repositorio.getTotalFigurinhas();
+        return this.repositorio.getTotalColecionaveis();
     }
 
     public int getQuantItensColados() {
@@ -88,7 +93,7 @@ public class Album {
         for (int i = 1; i < figurinhasColadas.size(); i++) {
             if(figurinhasColadas.get(i) == null)
             {
-                figurinhasColadas.set(i, repositorio.getFigurinha(i));
+                figurinhasColadas.set(i, (T) repositorio.getColecionavel(i));
                 quantFigurinhasColadas++;
             }
         }

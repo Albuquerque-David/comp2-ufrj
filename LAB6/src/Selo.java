@@ -2,21 +2,32 @@ import java.awt.*;
 
 public class Selo implements Colecionavel{
 
-    public float getValorNominal(){
-        return 0f;
+    private final Image imagem;
+    private final int posicao;
+    private final float valorMonetario;
+
+    public Selo(int posicao, String urlDaImagem, float valorMonetario) {
+        this.posicao = posicao;
+        this.imagem = obterImagem(urlDaImagem);
+        this.valorMonetario = valorMonetario;
     }
 
-    public String getPais(){
+    private Image obterImagem(String url) {
+        // ToDo baixaria da Internet...
         return null;
+    }
+
+    public float getValorNominal(){
+        return valorMonetario;
     }
 
     @Override
     public Image getImagem() {
-        return null;
+        return imagem;
     }
 
     @Override
     public int getPosicao() {
-        return 0;
+        return posicao;
     }
 }
