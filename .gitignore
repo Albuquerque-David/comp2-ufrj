@@ -1,5 +1,6 @@
 .idea
 .out
+.out/**
 out/
 
 # Compiled class file
